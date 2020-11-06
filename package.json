@@ -1,0 +1,30 @@
+{
+	"version": "1.0.0",
+	"description": "",
+	"main": "output/main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "webpack --config webpack.config.js",
+		"start": "electron .",
+		"build_macOS": "npx electron-packager . dist --platform=darwin --arch=x64 --overwrite",
+		"build_windows": "npx electron-packager . dist --platform=win32 --arch=all --overwrite"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"pixi.js-legacy": "^5.2.0",
+		"ts-loader": "^6.2.1",
+		"typescript": "^3.7.2",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10"
+	},
+	"dependencies": {
+		"@types/electron": "^1.6.10",
+		"@types/node": "^12.12.12",
+		"@types/pixi.js": "^5.0.0",
+		"electron": "^7.1.2",
+		"tslint": "^5.20.1"
+	},
+	"private": true
+}
