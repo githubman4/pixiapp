@@ -65,6 +65,7 @@ ipcMain.on(MSG.MSG_EXIT, () => {
 })
 
 /// //////////////////////////////////////////////////////
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 ipcMain.on(MSG.MSG1, (event: any, _ARG: any) => {
   // console.log(arg);
   const reMsg: IFelectronMessage = { error: null, message: ' connected  ipc Message connection!!', anydata: null }
@@ -73,6 +74,7 @@ ipcMain.on(MSG.MSG1, (event: any, _ARG: any) => {
 /// //////////////////////////////////////////////////////
 /// //////////////////////////////////////////////////////
 // Open page2 window (modal)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 ipcMain.on(MSG.MSG_OPEN_PAGE2, (_EV: any, _ARG: IFelectronMessage) => {
   const childWindows = new BrowserWindow({
     modal: true,

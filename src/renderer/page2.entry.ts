@@ -12,7 +12,7 @@ import { ipcRenderer } from 'electron'
 import { IFelectronMessage, MSG } from './define'
 // <<
 
-/// /////// ページ読み込み後　//////////////////////////////
+/// /////// ページ読み込み後 //////////////////////////////
 window.onload = () => {
   // ipc通信
   const send: IFelectronMessage = { error: null, message: null, anydata: null }

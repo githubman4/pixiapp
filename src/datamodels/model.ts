@@ -36,6 +36,7 @@ export class Model {
     public initialize () {
       // ステージ1生成
       const stage0 = new ModelStage(STAGE_TYPE.MENU, new PIXI.Container(), this.Status,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (_DELTA: number) => {
           // update animation
         })

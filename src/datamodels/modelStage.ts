@@ -20,11 +20,13 @@ export enum STAGE_TYPE {
 export class ModelStage implements IStageStruct {
     // 更新関数
     public stagetype: STAGE_TYPE; // ステージ識別
+    // eslint-disable-next-line no-undef
     public container: PIXI.Container; // コンテナ
     public status: {}; // 全体のステータス
     public update: (arg0: number) => void;
 
     // コンストラクタ
+    // eslint-disable-next-line no-undef
     constructor (stagetype: STAGE_TYPE, container: PIXI.Container, status: any, update: any) {
       this.stagetype = stagetype
       this.container = container

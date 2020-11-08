@@ -9,12 +9,15 @@ import { ModelStage, STAGE_TYPE } from './modelStage'
 export const CreateStage2 = (model: Model, stageType: STAGE_TYPE,
   PixiContainer: PIXI.Container,
   status: any) => {
-  const stg = new ModelStage(stageType, PixiContainer, status, () => {
-    // update　animation
+  const stg = new ModelStage(stageType, PixiContainer, status, (delta: number) => {
+    // update animation
+    PixiContainer.children[1].rotation += 0.05 * delta
   })
   fnInitialize(model, stg)
   return stg
 }
+/// //////////////////////////////////////////////////////////
+
 /// //////////////////////////////////////////////////////////
 /**
  * 初期化
