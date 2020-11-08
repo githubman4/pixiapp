@@ -1,4 +1,3 @@
-"use strict";
 /////////////////////////////////////////////////////////////
 import * as path from "path";
 // import * as PIXI from "pixi.js-legacy";
