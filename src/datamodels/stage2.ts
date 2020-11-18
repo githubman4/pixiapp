@@ -11,8 +11,14 @@ export const CreateStage2 = (model: Model, stageType: STAGE_TYPE,
   status: any) => {
   const stg = new ModelStage(stageType, PixiContainer, status, (delta: number) => {
     // update animation
-    PixiContainer.children.forEach((e) => { e.rotation += 0.05 * delta })
-   // PixiContainer.children[1].rotation += 0.05 * delta
+    PixiContainer.children.forEach((e) => {
+      if (e.name === 'osman') {
+        e.rotation -= 0.05 * delta
+      } else {
+        e.rotation += 0.05 * delta
+      }
+    })
+    // PixiContainer.children[1].rotation += 0.05 * delta
   })
   fnInitialize(model, stg)
   return stg
@@ -50,6 +56,18 @@ function fnInitialize (model: Model, stg: ModelStage) {
     alert(sp2.name)
   })
   stg.container.addChild(sp2)
+  // ******************************************************
+  // const tx2 = path.resolve('./images', './human_dot_color.gif')
+  const sp3 = new PIXI.Sprite(PIXI.Texture.from(tx2))
+  sp3.anchor = new PIXI.Point(0.5, 0.5)
+  sp3.interactive = true
+  sp3.buttonMode = true
+  sp3.name = 'puman'
+  sp3.position.set(150, 150)
+  sp3.on('pointertap', () => {
+    alert(sp3.name)
+  })
+  stg.container.addChild(sp3)
   // ******************************************************
 }
 /// //////////////////////////////////////////////////////////
