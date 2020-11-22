@@ -63,6 +63,11 @@ export class Model {
       // ステージ２追加
       const stage1 = new ModelStage(STAGE_TYPE.PLAY, new PIXI.Container(), this.Status,
         (delta: number) => {
+          // eslint-disable-next-line no-console
+
+          // eslint-disable-next-line no-console
+          console.log('delta=' + delta)
+
           // update animation
           stage1.container.children[0].rotation += 0.05 * delta
         })
@@ -101,7 +106,8 @@ export class Model {
 
       // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//
       // 仮装ステージ３追加（別ファイル実装)
-      const stage2 = CreateStage2(this, STAGE_TYPE.STAGE2, new PIXI.Container(), this.Status)
+      const spObjects: SpriteObj[] = []
+      const stage2 = CreateStage2(this, STAGE_TYPE.STAGE2, new PIXI.Container(), this.Status, spObjects)
 
       this.Stages.push(stage2)
 
@@ -139,5 +145,30 @@ export class Model {
     }
     // =====================================================//
 }
+/// //////////////////////////////////////////////////////////
+/// //////////////////////////////////////////////////////////
+export class SpriteObj {
+  public update: (obj:any, arg0:number) => void;
+  public texpath: string;
+  public name: string;
+  public sp : PIXI.Sprite
+
+  constructor (name: string, texpath: string, stg: ModelStage, update: any) {
+    this.name = name
+    this.texpath = texpath
+    this.update = update
+    this.sp = new PIXI.Sprite(PIXI.Texture.from(texpath))
+    this.sp.anchor.x = 0
+    this.sp.anchor.y = 0
+
+    this.sp.interactive = true
+    this.sp.buttonMode = true
+    this.sp.position.set(0, 0)
+    stg.container.addChild(this.sp)
+  }
+}
+/// //////////////////////////////////////////////////////////
+/// //////////////////////////////////////////////////////////
+/// //////////////////////////////////////////////////////////
 /// //////////////////////////////////////////////////////////
 /// //////////////////////////////////////////////////////////

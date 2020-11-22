@@ -2,15 +2,17 @@ import * as path from 'path'
 /// //////////////////////////////////////////////////////////
 // import * as PIXI from "pixi.js-legacy";
 import { PIXI } from '../config'
-import { Model } from './model'
+import { Model, SpriteObj } from './model'
 import { ModelStage, STAGE_TYPE } from './modelStage'
 /// //////////////////////////////////////////////////////////
 // stage2の生成
 export const CreateStage2 = (model: Model, stageType: STAGE_TYPE,
   PixiContainer: PIXI.Container,
-  status: any) => {
+  status: any,
+  sp_objects: SpriteObj[]) => {
   const stg = new ModelStage(stageType, PixiContainer, status, (delta: number) => {
     // update animation
+
     PixiContainer.children.forEach((e) => {
       if (e.name === 'osman') {
         e.rotation -= 0.05 * delta
@@ -18,9 +20,15 @@ export const CreateStage2 = (model: Model, stageType: STAGE_TYPE,
         e.rotation += 0.05 * delta
       }
     })
+
+    // 新しいオブジェのUPDATE
+    sp_objects.forEach((e:SpriteObj) => {
+      e.update(e, delta)
+    })
+
     // PixiContainer.children[1].rotation += 0.05 * delta
   })
-  fnInitialize(model, stg)
+  fnInitialize(model, stg, sp_objects)
   return stg
 }
 /// //////////////////////////////////////////////////////////
@@ -31,7 +39,7 @@ export const CreateStage2 = (model: Model, stageType: STAGE_TYPE,
  * @param model
  * @param stg
  */
-function fnInitialize (model: Model, stg: ModelStage) {
+function fnInitialize (model: Model, stg: ModelStage, sp_objects: SpriteObj[]) {
   // 前のステージに戻る
   const tx1 = path.resolve('./images', './ArrowLeft.gif')
   const sp1 = new PIXI.Sprite(PIXI.Texture.from(tx1))
@@ -44,6 +52,7 @@ function fnInitialize (model: Model, stg: ModelStage) {
     model.changeStage(STAGE_TYPE.PLAY)
   })
   stg.container.addChild(sp1)
+
   // ******************************************************
   const tx2 = path.resolve('./images', './human_dot_color.gif')
   const sp2 = new PIXI.Sprite(PIXI.Texture.from(tx2))
@@ -68,6 +77,18 @@ function fnInitialize (model: Model, stg: ModelStage) {
     alert(sp3.name)
   })
   stg.container.addChild(sp3)
+  // ******************************************************
+
+  // 新しいスプライトオベジェクトの追加
+
+  const sp4 = new SpriteObj('NEW Osman', tx2, stg, (obj:SpriteObj, delta: number) => {
+    obj.sp.rotation += 0.01 * delta
+  })
+  sp4.sp.position.set(80, 80)
+  sp4.sp.on('pointertap', () => {
+    alert(sp4.name)
+  })
+  sp_objects.push(sp4)
   // ******************************************************
 }
 /// //////////////////////////////////////////////////////////
