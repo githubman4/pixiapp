@@ -10,23 +10,15 @@ export const CreateStage2 = (model: Model, stageType: STAGE_TYPE,
   PixiContainer: PIXI.Container,
   status: any,
   sp_objects: SpriteObj[]) => {
-  const stg = new ModelStage(stageType, PixiContainer, status, (delta: number) => {
-    // update animation
-
-    /* PixiContainer.children.forEach((e) => {
-      if (e.name === 'osman') {
-        e.rotation -= 0.05 * delta
-      }
-    })
-    */
-
+  const stg = new ModelStage(stageType, PixiContainer, status,
+    (delta: number) => {
     // 新しいオブジェのUPDATE
-    sp_objects.forEach((e:SpriteObj) => {
-      e.update(e, delta)
-    })
+      sp_objects.forEach((e:SpriteObj) => {
+        e.update(e, delta)
+      })
 
     // PixiContainer.children[1].rotation += 0.05 * delta
-  })
+    })
   fnInitialize(model, stg, sp_objects)
   return stg
 }
@@ -41,7 +33,6 @@ export const CreateStage2 = (model: Model, stageType: STAGE_TYPE,
 function fnInitialize (model: Model, stg: ModelStage, sp_objects: SpriteObj[]) {
   // 前のステージに戻る
   const tx1 = path.resolve('./images', './ArrowLeft.gif')
-  // const sp1 = new PIXI.Sprite(PIXI.Texture.from(tx1))
   const sp1 = new SpriteObj('arrow', tx1, stg, () => { })
   sp1.sp.anchor.x = 0
   sp1.sp.anchor.y = 0
