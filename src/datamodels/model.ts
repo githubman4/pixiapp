@@ -45,6 +45,12 @@ export class Model {
     this.Stages.push(stage0)
     this.app.stage.addChild(stage0.container)
 
+    // テキストオブジェクトの生成
+    const fpstext = new TextObject("text1", "こんにちは", stage0, () => { })
+    fpstext.superObj.x = 10
+    fpstext.superObj.y = 10
+
+
     // スプライトの生成
     const p = path.resolve('./images', './button_ok32.gif')
     // console.log(p);
