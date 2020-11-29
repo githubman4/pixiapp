@@ -33,6 +33,7 @@ export class Model {
   /**
    * 初期化
    */
+
   public initialize() {
     // ステージ1生成
     const stage0 = new ModelStage(STAGE_TYPE.MENU, new PIXI.Container(), this.Status,
@@ -46,10 +47,9 @@ export class Model {
     this.app.stage.addChild(stage0.container)
 
     // テキストオブジェクトの生成
-    const fpstext = new TextObject("text1", "こんにちは", stage0, () => { })
+    const fpstext = new TextObject('text1', 'こんにちは', stage0, () => { })
     fpstext.superObj.x = 10
     fpstext.superObj.y = 10
-
 
     // スプライトの生成
     const p = path.resolve('./images', './button_ok32.gif')
@@ -164,8 +164,8 @@ export class SpriteObject {
     this.name = name
     this.texpath = texpath
     this.update = update
-    this.superObj
-      = new PIXI.Sprite(PIXI.Texture.from(texpath))
+    this.superObj =
+      new PIXI.Sprite(PIXI.Texture.from(texpath))
     this.superObj
       .anchor.x = 0
     this.superObj
@@ -189,14 +189,12 @@ export class TextObject {
   public text: string
   public superObj: PIXI.Text
 
-
   constructor(name: string, text: string, stg: ModelStage, update: any) {
     this.name = name
     this.text = text
     this.update = update
     this.superObj = new PIXI.Text(text)
     stg.container.addChild(this.superObj)
-
   }
 }
 /// //////////////////////////////////////////////////////////

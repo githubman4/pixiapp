@@ -20,6 +20,7 @@
         "no-console": "warn", // コンソールは警告とする。
         // 以下のルール２項目はinterfaceをインポートしたときの警告を無くす
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "error"
+        "@typescript-eslint/no-unused-vars": "error",
+        "space-before-function-paren": "off"
     }
 }
