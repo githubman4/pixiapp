@@ -47,7 +47,18 @@ export class Model {
     this.app.stage.addChild(stage0.container)
 
     // テキストオブジェクトの生成
-    const fpstext = new TextObject('text1', 'こんにちは', stage0, () => { })
+    // テキストスタイルの設定
+    const txtstyle = {
+      font: '12pt Arial',
+      fontSize: 14,
+      fill: 'white',
+      wordWrap: true,
+      wordWrapWidth: 100,
+      breakWord: true
+    }
+
+    const fpstext = new TextObject('text1', 'こんにちは いらっしゃいませ おはようございます', txtstyle, stage0, () => { })
+    // fpstext.superObj.wordWrap = true
     fpstext.superObj.x = 10
     fpstext.superObj.y = 10
 
@@ -188,12 +199,14 @@ export class TextObject {
   public name: string;
   public text: string
   public superObj: PIXI.Text
+  public textStyle: PIXI.TextStyle
 
-  constructor(name: string, text: string, stg: ModelStage, update: any) {
+  constructor(name: string, text: string, text_style: any, stg: ModelStage, update: any) {
     this.name = name
     this.text = text
     this.update = update
-    this.superObj = new PIXI.Text(text)
+    this.textStyle = text_style
+    this.superObj = new PIXI.Text(text, this.textStyle)
     stg.container.addChild(this.superObj)
   }
 }
