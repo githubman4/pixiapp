@@ -6,6 +6,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "webpack --config webpack.config.js",
 		"start": "electron .",
+		"clean": "rm -rf ./output",
 		"build_macOS": "npx electron-packager . dist --platform=darwin --arch=x64 --overwrite",
 		"build_windows": "npx electron-packager . dist --platform=win32 --arch=all --overwrite"
 	},
